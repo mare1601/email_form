@@ -7,24 +7,27 @@ import json
 
 # Create your views here.
 def main_page(request):
-  posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-  return render(request, 'emailform/main_page.html', {'form': PostForm()})
+  tmpl_vars = {
+    'all_posts': Post.objects.all(),
+    'form': PostForm()
+  }
+  return render(request, 'emailform/main_page.html', tmpl_vars)
 
 
 def create_post(request):
     if request.method == 'POST':
-        post_text = request.POST.get('the_post')
+        #I think something is wrong here possibly
+        post_text = request.POST.get('try_this')
         response_data = {}
 
-        post = Post(text=post_text)
+        post = Post(text=post_text, author=request.user)
         post.save()
 
         response_data['result'] = 'Create post successful!'
         response_data['postpk'] = post.pk
-        response_data['first'] = post.first
-        response_data['last'] = post.last
-        response_data['email'] = post.email
-        response_data['created_date'] = post.created.strftime('%B %d, %Y %I:%M %p')
+        response_data['text'] = post.text
+        response_data['created'] = post.created.strftime('%B %d, %Y %I:%M %p')
+        response_data['author'] = post.author.username
 
         return HttpResponse(
             json.dumps(response_data),
