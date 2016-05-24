@@ -6,15 +6,15 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # exclude = ['author', 'updated', 'created', ]
-        fields = ['first', 'last', 'email']
+        fields = ['first']
         widgets = {
             'first': forms.TextInput(
                 attrs={'id': 'post-text', 'required': True, 'placeholder': 'First Name'}
             ),
-            'last': forms.TextInput(
-                attrs={'id': 'post-text', 'required': True, 'placeholder': 'First Name'}
-            ),
-            'email': forms.TextInput(
-                attrs={'id': 'post-text', 'required': True, 'placeholder': 'First Name'}
-            ),
+            #'last': forms.TextInput(
+            #    attrs={'id': 'post-text', 'required': True, 'placeholder': 'First Name'}
+            #),
+            #'email': forms.TextInput(
+            #    attrs={'id': 'post-text', 'required': True, 'placeholder': 'First Name'}
+            #),
         }
