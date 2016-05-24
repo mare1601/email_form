@@ -1,0 +1,32 @@
+{% extends 'emailform/main_page.html' %}
+
+{% block content %}
+<div class="row white">
+    <div class="columns large-12">
+        <form action="/create_post/" method="POST" id="post-form">
+            {% csrf_token %}
+            <div class="fieldWrapper" id="the_post">
+                {{ form.text }}
+            </div>
+            <div id="results"></div> <!-- errors go here -->
+            <input type="submit" value="Post" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="talk">
+            {% for post in all_posts %}
+                <li>
+                    <strong>{{ post.first }} {{ post.last }}</strong> -
+                    <em>{{ post.email }}</em> -
+                    <span>{{ post.created_date }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
