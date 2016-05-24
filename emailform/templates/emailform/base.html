@@ -1,12 +1,16 @@
-{% extends 'emailform/main_page.html' %}
+{% extends "emailform/main_page.html" %}
 
 {% block content %}
+<br><br>
+
 <div class="row white">
     <div class="columns large-12">
         <form action="/create_post/" method="POST" id="post-form">
             {% csrf_token %}
             <div class="fieldWrapper" id="the_post">
-                {{ form.text }}
+                {{ form.first }}
+                {{ form.last }}
+                {{ form.email }}
             </div>
             <div id="results"></div> <!-- errors go here -->
             <input type="submit" value="Post" class="tiny button">

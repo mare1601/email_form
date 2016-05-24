@@ -8,7 +8,8 @@ import json
 # Create your views here.
 def main_page(request):
   posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-  return render(request, 'emailform/main_page.html', {'posts': posts})
+  return render(request, 'emailform/main_page.html', {'form': PostForm()})
+
 
 def create_post(request):
     if request.method == 'POST':

@@ -56,8 +56,41 @@
   </head>
 
   <body>
-  {% block content %}
-  {% endblock %}
+<br><br>
+<div class="row white">
+    <div class="large-12 columns">
+        <h2>Hello!</h2>
+    </div>
+</div>
+<div class="row white">
+    <div class="columns large-12">
+        <form action="/create_post/" method="POST" id="post-form">
+            {% csrf_token %}
+            <div class="fieldWrapper" id="the_post">
+
+                {{ form.first }}
+
+            </div>
+            <div id="results"></div> <!-- errors go here -->
+            <input type="submit" value="Submit" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="talk">
+            {% for post in all_posts %}
+                <li>
+                    <strong>{{ post.first }}</strong> -
+                    <em>{{ post.email }}</em> -
+                    <span>{{ post.created_date }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
   <script src="static/scripts/main.js"></script>
   
   </body>
