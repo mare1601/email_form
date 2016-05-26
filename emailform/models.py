@@ -2,6 +2,8 @@ from django.db import models
 
 class Post(models.Model):
   text = models.TextField(null=True, max_length=255)
+  last = models.TextField(null=True, max_length=255)
+  email = models.EmailField(null=True, max_length=254)
   updated = models.DateTimeField(null=True, auto_now=True)
   created = models.DateTimeField(null=True, auto_now_add=True)
 
@@ -10,7 +12,6 @@ class Post(models.Model):
 
   #first = models.CharField(max_length=50)
   #last = models.CharField(max_length=50)
-  #email = models.EmailField(max_length=254)
   #created_date = models.DateTimeField(default=timezone.now)
 
   #def publish(self):

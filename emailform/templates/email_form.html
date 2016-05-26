@@ -4,11 +4,17 @@
 <br><br>
 <div class="row white">
     <div class="columns large-12">
-        <h2>Bro!</h2>
+        <h2>Better.</h2>
         <form method="POST" id="post-form">
             {% csrf_token %}
             <div class="fieldWrapper" id="the_post">
                 {{ form.text }}
+            </div>
+            <div class="fieldWrapper" id="last_name">
+                {{ form.last }}
+            </div>
+            <div class="fieldWrapper" id="email_address">
+                {{ form.email }}
             </div>
             <div id="results"></div>
             <input type="submit" value="Post" class="tiny button">
@@ -22,10 +28,10 @@
         <ul id="talk">
             {% for post in all_posts %}
                 <li>
-                    <strong>{{ post.text }}</strong> -
-                    <em>{{ post.author }}</em> -
-                    <span>{{ post.created }}</span> -
-                    <a id='delete-post-{{post.id}}'>delete me</a>
+                    <strong>{{ post.text }} {{ post.last }}</strong> -
+                    <span>{{ post.email }}</span> -
+                    <span>{{ post.created }}</span>
+                    <!--<a id='delete-post-{{post.id}}'>delete me</a>-->
                 </li>
             {% endfor %}
         </ul>

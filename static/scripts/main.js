@@ -10,13 +10,17 @@ function create_post() {
     $.ajax({
         url : "create_post/", // the endpoint
         type : "POST", // http method
-        data : { the_post : $('#post-text').val() }, // data sent with the post request
+        data : { the_post : $('#post-text').val(), last_name : $('#last-text').val(), email_address : $('#email-text').val() }, // data sent with the post request
 
         // handle a successful response
         success : function(json) {
             $('#post-text').val(''); // remove the value from the input
+            $('#last-text').val('');
+            $('#email-text').val('');
             console.log(json); // log the returned json to the console
             console.log("success"); // another sanity check
+            $("#talk").prepend("<li><strong>"+json.text+" "+json.last+"</strong> - <span>"+json.email+" - <span> "+json.created+"</span></li>");
+    console.log("success"); // another sanity check
         },
 
         // handle a non-successful response
